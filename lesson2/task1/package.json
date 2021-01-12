@@ -5,14 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:scripts": "babel"
+    "build:scripts": "babel ./src --out-dir=./dist"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {},
   "devDependencies": {
     "@babel/cli": "^7.12.10",
-    "@babel/core": "^7.12.10"
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11"
   }
 }
