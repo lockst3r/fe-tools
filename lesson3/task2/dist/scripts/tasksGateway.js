@@ -1,7 +1,3 @@
-import "core-js/modules/es.array.index-of.js";
-import "core-js/modules/es.array.map.js";
-import "core-js/modules/es.object.keys.js";
-import "core-js/modules/es.object.to-string.js";
 import "core-js/modules/es.promise.js";
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -14,46 +10,34 @@ function _objectWithoutProperties(source, excluded) { if (source == null) return
 
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-var baseUrl = "https://5ff86cd110778b001704348e.mockapi.io/api/v1/tasks";
+const baseUrl = "https://5ff86cd110778b001704348e.mockapi.io/api/v1/tasks";
 
-var mapTasks = function mapTasks(tasks) {
-  return tasks.map(function (_ref) {
-    var id = _ref.id,
-        rest = _objectWithoutProperties(_ref, ["id"]);
+const mapTasks = tasks => tasks.map((_ref) => {
+  let {
+    id
+  } = _ref,
+      rest = _objectWithoutProperties(_ref, ["id"]);
 
-    return _objectSpread(_objectSpread({}, rest), {}, {
-      id: id
-    });
+  return _objectSpread(_objectSpread({}, rest), {}, {
+    id
   });
-};
+});
 
-export var getTasksList = function getTasksList() {
-  return fetch(baseUrl).then(function (response) {
-    return response.json();
-  }).then(function (tasks) {
-    return mapTasks(tasks);
-  });
-};
-export var createTask = function createTask(taskData) {
-  return fetch(baseUrl, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8'
-    },
-    body: JSON.stringify(taskData)
-  });
-};
-export var updateTask = function updateTask(taskId, updatedTaskData) {
-  return fetch("".concat(baseUrl, "/").concat(taskId), {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8'
-    },
-    body: JSON.stringify(updatedTaskData)
-  });
-};
-export var deleteTask = function deleteTask(taskId) {
-  return fetch("".concat(baseUrl, "/").concat(taskId), {
-    method: 'DELETE'
-  });
-};
+export const getTasksList = () => fetch(baseUrl).then(response => response.json()).then(tasks => mapTasks(tasks));
+export const createTask = taskData => fetch(baseUrl, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json;charset=utf-8'
+  },
+  body: JSON.stringify(taskData)
+});
+export const updateTask = (taskId, updatedTaskData) => fetch("".concat(baseUrl, "/").concat(taskId), {
+  method: 'PUT',
+  headers: {
+    'Content-Type': 'application/json;charset=utf-8'
+  },
+  body: JSON.stringify(updatedTaskData)
+});
+export const deleteTask = taskId => fetch("".concat(baseUrl, "/").concat(taskId), {
+  method: 'DELETE'
+});

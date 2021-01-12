@@ -1,6 +1,4 @@
-export var setItem = function setItem(key, value) {
+export const setItem = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));
 };
-export var getItem = function getItem(key) {
-  return JSON.parse(localStorage.getItem(key));
-};
+export const getItem = key => JSON.parse(localStorage.getItem(key));
