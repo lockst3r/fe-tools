@@ -1,7 +1,7 @@
-import { deleteTask, getTaskList } from './tasksGateway.js';
-import { changeCompletedTask } from './changeTask.js';
-import { renderListItems } from './render.js';
-import { setItem } from './storage.js';
+import { deleteTask, getTaskList } from './tasksGateway';
+import { changeCompletedTask } from './changeTask';
+import { renderListItems } from './render';
+import { setItem } from './storage';
 
 export const onListClick = (event) => {
   const deleteBtn = event.target.classList.contains('list-item__delete-btn');
@@ -11,11 +11,11 @@ export const onListClick = (event) => {
 
     deleteTask(`${taskId}`)
       .then(() => getTaskList())
-      .then(newTasksList => {
+      .then((newTasksList) => {
         setItem('tasksList', newTasksList);
         renderListItems();
-    });
-  };
+      });
+  }
 
   changeCompletedTask(event);
-}
+};

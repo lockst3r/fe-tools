@@ -1,5 +1,5 @@
-import { additionListTasks } from './additionTasks.js';
-import { onListClick } from './onListClick.js';
+import { additionListTasks } from './additionTasks';
+import { onListClick } from './onListClick';
 
 export const initTodoListHandlers = () => {
   const buttonElem = document.querySelector('.btn');
@@ -7,4 +7,4 @@ export const initTodoListHandlers = () => {
 
   const listElem = document.querySelector('.list');
   listElem.addEventListener('click', onListClick);
-}
+};

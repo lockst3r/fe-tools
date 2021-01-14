@@ -1,8 +1,8 @@
-import { getItem } from "./storage.js";
-import "./list.scss";
+import { getItem } from './storage';
+import './list.scss';
 
 const taskListSorte = (a, b) => {
-  if (a.done - b.done != 0) {
+  if (a.done - b.done !== 0) {
     return a.done - b.done;
   }
 
@@ -13,29 +13,29 @@ const taskListSorte = (a, b) => {
 };
 
 const createCheckbox = ({ done, id }) => {
-  const checkboxElem = document.createElement("input");
-  checkboxElem.setAttribute("type", "checkbox");
+  const checkboxElem = document.createElement('input');
+  checkboxElem.setAttribute('type', 'checkbox');
   checkboxElem.dataset.id = id;
   checkboxElem.checked = done;
-  checkboxElem.classList.add("list-item__checkbox");
+  checkboxElem.classList.add('list-item__checkbox');
 
   return checkboxElem;
 };
 
 const createListItem = ({ text, done, id }) => {
-  const listItemElem = document.createElement("li");
-  listItemElem.classList.add("list-item", "list__item");
+  const listItemElem = document.createElement('li');
+  listItemElem.classList.add('list-item', 'list__item');
   const checkboxElem = createCheckbox({ done, id });
   if (done) {
-    listItemElem.classList.add("list-item__done");
+    listItemElem.classList.add('list-item__done');
   }
 
-  const textElem = document.createElement("span");
-  textElem.classList.add("list-item__text");
+  const textElem = document.createElement('span');
+  textElem.classList.add('list-item__text');
   textElem.textContent = text;
 
-  const deleteBtnElem = document.createElement("button");
-  deleteBtnElem.classList.add("list-item__delete-btn");
+  const deleteBtnElem = document.createElement('button');
+  deleteBtnElem.classList.add('list-item__delete-btn');
   deleteBtnElem.dataset.id = id;
 
   listItemElem.append(checkboxElem, textElem, deleteBtnElem);
@@ -44,11 +44,11 @@ const createListItem = ({ text, done, id }) => {
 };
 
 export const renderListItems = () => {
-  const listElem = document.querySelector(".list");
-  const taskList = getItem("tasksList") || [];
+  const listElem = document.querySelector('.list');
+  const taskList = getItem('tasksList') || [];
 
   const listItemsElems = taskList.sort(taskListSorte).map(createListItem);
 
-  listElem.innerHTML = "";
+  listElem.innerHTML = '';
   listElem.append(...listItemsElems);
 };
